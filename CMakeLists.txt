@@ -17,3 +17,7 @@ target_link_libraries(gpc_benchmark gpc)
 # generator
 add_executable(generator benchmark/generator.c)
 target_link_libraries(generator m)
+
+#shp2gpf
+add_executable(shp2gpf benchmark/shp2gpf.c)
+target_link_libraries(shp2gpf shp proj)
