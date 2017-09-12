@@ -23,8 +23,8 @@ void data(Paths& p);
 
 int main () {
 
-    Paths subj = gpf_read("../polygons/100_stars_1.gpf");
-    Paths clip = gpf_read("../polygons/100_stars_2.gpf" );
+    Paths subj = gpf_read("../polygons/Greenland.gpf");
+    Paths clip = gpf_read("../polygons/Canada.gpf" );
     Paths solution;
 
     info(subj);
@@ -34,8 +34,8 @@ int main () {
     start();
     Clipper c;
     c.AddPaths(subj, ptSubject, true);
-    c.AddPaths(clip, ptClip, true);
-    c.Execute(ctIntersection, solution, pftNonZero, pftNonZero);
+    c.AddPaths(clip, ptClip   , true);
+    c.Execute(ctXor, solution, pftNonZero, pftNonZero);
     stop();
 
     info(solution);

@@ -12,19 +12,19 @@ int main() {
     
     FILE* fp;
 
-    fp = fopen("../polygons/100_stars_1.gpf", "r");
+    fp = fopen("../polygons/Greenland.gpf", "r");
     gpc_read_polygon(fp, 0, &p1);
     fclose(fp);
     info(&p1);
     
-    fp = fopen("../polygons/100_stars_2.gpf", "r");
+    fp = fopen("../polygons/Canada.gpf", "r");
     gpc_read_polygon(fp, 0, &p2);
     fclose(fp);
     printf("polygon 2 has %d contours\n", p2.num_contours); 
     info(&p2);
 
     start();
-    gpc_polygon_clip(GPC_INT, &p1, &p2, &out);
+    gpc_polygon_clip(GPC_XOR, &p1, &p2, &out);
     stop();
     info(&out);
     data(&out);
