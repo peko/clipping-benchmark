@@ -13,3 +13,7 @@ add_subdirectory(gpc.2.33)
 
 add_executable(gpc_benchmark benchmark/gpc.c)
 target_link_libraries(gpc_benchmark gpc)
+
+# generator
+add_executable(generator benchmark/generator.c)
+target_link_libraries(generator m)

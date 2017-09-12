@@ -12,12 +12,12 @@ int main() {
 	
 	FILE* fp;
 
-	fp = fopen("../polygons/britain.gpf", "r");
+	fp = fopen("../polygons/50_stars_1.gpf", "r");
     gpc_read_polygon(fp, 0, &p1);
     fclose(fp);
 	info(&p1);
 	
-	fp = fopen("../polygons/arrows.gpf", "r");
+	fp = fopen("../polygons/50_stars_2.gpf", "r");
     gpc_read_polygon(fp, 0, &p2);
     fclose(fp);
 	printf("polygon 2 has %d contours\n", p2.num_contours); 
