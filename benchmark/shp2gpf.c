@@ -187,12 +187,12 @@ shape_t reproject(
 void write_shape(shape_t* shape, char* filename) {
     FILE* fp = fopen(filename, "w");
     // contours number
-    // fprintf(fp, "%d\n", shape->contour.n);
+    fprintf(fp, "%d\n", shape->contour.n);
     for(size_t j=0; j<shape->contour.n; j++) {
         contour_t* contour = &shape->contour.a[j];
         // vertices number
-        // fprintf(fp, "%d\n", contour->vertex.n);
-        fprintf(fp, "\n");
+        fprintf(fp, "%d\n", contour->vertex.n);
+        // fprintf(fp, "\n");
         for(size_t k=0; k<contour->vertex.n; k++) {
             vertex_t* v = &contour->vertex.a[k];
             // vertex coordinates
@@ -219,8 +219,8 @@ void write_gpf(shape_v shapes, string_v names){
     for(size_t i=0; i< shapes.n; i++) {
         shape_t* shape = &shapes.a[i];
         sprintf(filename, "out/%s.gpf\0", names.a[i]);
-        sprintf(laea, "+proj=laea +lat_0=%f +lon_0=%f +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs", 
-            shape->center.y, shape->center.x);
+        // sprintf(laea, "+proj=laea +lat_0=%f +lon_0=%f +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs", 89.99, 90.0);
+        sprintf(laea, "+proj=laea +lat_0=%f +lon_0=%f +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs", shape->center.y, shape->center.x);
 	shape_t shape_laea = reproject(shape, wgs84, laea);
         write_shape(&shape_laea, filename);
         shape_destroy(&shape_laea);
