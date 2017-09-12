@@ -8,39 +8,39 @@ void info(gpc_polygon* p);
 void data(gpc_polygon* p);
 
 int main() {
-	gpc_polygon p1, p2, out;
-	
-	FILE* fp;
+    gpc_polygon p1, p2, out;
+    
+    FILE* fp;
 
-	fp = fopen("../polygons/100_stars_1.gpf", "r");
+    fp = fopen("../polygons/100_stars_1.gpf", "r");
     gpc_read_polygon(fp, 0, &p1);
     fclose(fp);
-	info(&p1);
-	
-	fp = fopen("../polygons/100_stars_2.gpf", "r");
+    info(&p1);
+    
+    fp = fopen("../polygons/100_stars_2.gpf", "r");
     gpc_read_polygon(fp, 0, &p2);
     fclose(fp);
-	printf("polygon 2 has %d contours\n", p2.num_contours); 
-	info(&p2);
+    printf("polygon 2 has %d contours\n", p2.num_contours); 
+    info(&p2);
 
-	start();
+    start();
     gpc_polygon_clip(GPC_INT, &p1, &p2, &out);
-  	stop();
+    stop();
     info(&out);
-	data(&out);
+    data(&out);
 
-	gpc_free_polygon(&out);
-  	gpc_free_polygon(&p2);
-  	gpc_free_polygon(&p1);
+    gpc_free_polygon(&out);
+    gpc_free_polygon(&p2);
+    gpc_free_polygon(&p1);
 }
 
 void data(gpc_polygon* p) {
     for(int i=0;i<p->num_contours; i++) {
-		gpc_vertex v;
-		for(int j=0; j<p->contour[i].num_vertices; j++) {
-    		v = p->contour[i].vertex[j];
+        gpc_vertex v;
+        for(int j=0; j<p->contour[i].num_vertices; j++) {
+            v = p->contour[i].vertex[j];
             fprintf(stdout, "%f %f\n", v.x, v.y);
-		}
+        }
         // close path
         v = p->contour[i].vertex[0];
         fprintf(stdout, "%f %f\n", v.x, v.y);

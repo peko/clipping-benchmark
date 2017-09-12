@@ -23,7 +23,7 @@ void data(Paths& p);
 
 int main () {
 
-	Paths subj = gpf_read("../polygons/100_stars_1.gpf");
+    Paths subj = gpf_read("../polygons/100_stars_1.gpf");
     Paths clip = gpf_read("../polygons/100_stars_2.gpf" );
     Paths solution;
 
@@ -31,55 +31,55 @@ int main () {
     info(clip);
     
     //perform intersection ...
-	start();
+    start();
     Clipper c;
     c.AddPaths(subj, ptSubject, true);
     c.AddPaths(clip, ptClip, true);
     c.Execute(ctIntersection, solution, pftNonZero, pftNonZero);
-	stop();
+    stop();
 
-	info(solution);
-	data(solution);
+    info(solution);
+    data(solution);
 }
 
 void data(Paths& p) {
-	for(auto&& path : p) {
+    for(auto&& path : p) {
         for(auto&& point : path) {
-        	cout << point.X/S << " " << point.Y/S << "\n";
+            cout << point.X/S << " " << point.Y/S << "\n";
         }
         cout<< path[0].X/S << " " << path[0].Y/S << "\n"; // close path 
-    	cout << "\n";
-	}
+        cout << "\n";
+    }
 }
 
 void info(Paths& p) {
-	cerr << p.size() << " contours\n";
-	for(auto&& path : p) {
+    cerr << p.size() << " contours\n";
+    for(auto&& path : p) {
         cerr << "  " << path.size() << " vertices\n";
         // for(auto&& point : path) {
-        // 	cout << point.X/S << " " << point.Y/S << "\n";
+        //  cout << point.X/S << " " << point.Y/S << "\n";
         // }
-	}
-	cerr << "\n";
+    }
+    cerr << "\n";
 }
 
 // gpf format reader
 Paths gpf_read(string name) {
-	ifstream f(name);
-	int path_cnt;
-	f >> path_cnt;
-	// cout << path_cnt << "\n";
-	Paths paths(path_cnt);
-	for(int i = 0; i<path_cnt; i++) {
-		int point_cnt;
-		f >> point_cnt;
-		// cout << "  " << point_cnt << "\n";
-		for(int j=0; j<point_cnt; j++) {
-			double x,y;
-			f >> x >> y;
-			// cout << "    " << x << " " << y << "\n";
-			paths[i]<< IntPoint(x*S,y*S);
-		}
+    ifstream f(name);
+    int path_cnt;
+    f >> path_cnt;
+    // cout << path_cnt << "\n";
+    Paths paths(path_cnt);
+    for(int i = 0; i<path_cnt; i++) {
+        int point_cnt;
+        f >> point_cnt;
+        // cout << "  " << point_cnt << "\n";
+        for(int j=0; j<point_cnt; j++) {
+            double x,y;
+            f >> x >> y;
+            // cout << "    " << x << " " << y << "\n";
+            paths[i]<< IntPoint(x*S,y*S);
+        }
     }
     return paths;
 }
