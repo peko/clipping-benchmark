@@ -1,4 +1,4 @@
-# Clipping libraies tests
+# Clipping libraries tests
 
 - http://www.angusj.com/delphi/clipper.php
 - http://www.cs.man.ac.uk/~toby/gpc/
