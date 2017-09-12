@@ -23,7 +23,7 @@ void random_stars(FILE* fp, int stars_cnt) {
 		int cy = rand() % 1000;
 		int r1 = rand() % 500;
 		int r2 = rand() % 100;
-		int cn = (3 + rand() % 32) * 2;
+		int cn = (3 + rand() % 64) * 2;
 		star(fp, cx, cy, r1, r2, cn);
 		//fprintf(fp, "\n");
 	}
@@ -37,6 +37,6 @@ long get_nsec() {
 
 void main() {
 	srand((int)get_nsec());
-	random_stars(stdout, 50);
+	random_stars(stdout, 100);
 }
 

@@ -23,8 +23,8 @@ void data(Paths& p);
 
 int main () {
 
-	Paths subj = gpf_read("../polygons/50_stars_1.gpf");
-    Paths clip = gpf_read("../polygons/50_stars_2.gpf" );
+	Paths subj = gpf_read("../polygons/100_stars_1.gpf");
+    Paths clip = gpf_read("../polygons/100_stars_2.gpf" );
     Paths solution;
 
     info(subj);
